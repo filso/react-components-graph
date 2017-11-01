@@ -19,7 +19,6 @@ import CurrentView from '../../models/CurrentView';
 export default class Main extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   init(isTheSameApp) {
-
     let inspectedApp = new InspectedApp();
     inspectedApp.loadSampleData();
     let rawData = inspectedApp.getData();

@@ -76,23 +76,13 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
 
     function tick() {
       links
-        .attr('x1', function(d) {
-          return d.source.x;
-        })
-        .attr('y1', function(d) {
-          return d.source.y;
-        })
-        .attr('x2', function(d) {
-          return d.target.x;
-        })
-        .attr('y2', function(d) {
-          return d.target.y;
-        });
+        .attr('x1', (d) => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
 
       nodes
-        .attr('transform', function(d) {
-          return 'translate(' + d.x + ',' + d.y + ')';
-        });
+        .attr('transform', (d) => 'translate(' + d.x + ',' + d.y + ')');
     }
 
     function nodeClick(d) {
@@ -219,7 +209,6 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
     );
   }
 }
-
 
 ComponentsGraph.propTypes = {
   currentView: PropTypes.object,
