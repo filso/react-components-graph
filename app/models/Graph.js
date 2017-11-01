@@ -1,3 +1,6 @@
+import Component from './Component';
+import * as _ from 'lodash';
+
 export default function Graph(nodes, links) {
   this.origNodes = this.nodes = nodes;
   this.origLinks = this.links = links;
@@ -31,7 +34,7 @@ let createNodes = (rawNodes, oldGraph) => {
   _.each(nodes, function(node1) {
 
     var node1Deps = _.filter(nodes, function(item) {
-      return _.contains(node1._data.deps, item._data.name);
+      return _.includes(node1._data.deps, item._data.name);
     });
 
     _.each(node1Deps, function(node2) {

@@ -14,6 +14,7 @@ import messages from './messages';
 import ComponentsGraph from '../../components/ComponentsGraph';
 import Graph from '../../models/Graph';
 import InspectedApp from '../../models/InspectedApp';
+import CurrentView from '../../models/CurrentView';
 
 export default class Main extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -28,9 +29,11 @@ export default class Main extends React.PureComponent { // eslint-disable-line r
       allComponents = allComponents.concat(module.components);
     });
 
+    let currentView = new CurrentView();
+
     // Note: if it's the same app, then just update old graph
     let componentsGraph = Graph.createFromRawNodes(allComponents, isTheSameApp ? componentsGraph : undefined);
-    currentView.setGraphs(componentsGraph);
+    currentView.setGraph(componentsGraph);
     currentView.applyFilters();
     this.setState({ currentView });
   }
