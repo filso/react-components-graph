@@ -100,7 +100,7 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
     }
 
     function zoomListener() {
-      var tmp = svg;
+      let tmp = svg;
 
       // add transtion if user is not panning (move) or zooming (wheel)
       if (!d3.event.sourceEvent || ['mousemove', 'wheel'].indexOf(d3.event.sourceEvent.type) === -1) {
@@ -110,7 +110,6 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
         'translate(' + d3.event.translate + ') ' +
         ' scale(' + d3.event.scale + ')');
     }
-
 
     // scope.$on(Const.Events.CHOOSE_NODE, function(event, d, translate) {
     //   if (force.nodes().indexOf(d) === -1) { // if d is not present, it's not visible
@@ -161,15 +160,6 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
         d3.select(this).classed('fixed', d.fixed = true);
       }
     }
-
-    // scope.$watch('currentView.options.stickyNodesEnabled', function(newVal, oldVal) {
-    //   if (newVal !== oldVal) {
-    //     if (newVal === false) {
-    //       update();
-    //     }
-    //   }
-    // });
-
 
     var zoom = d3.behavior.zoom()
       .scaleExtent([0.5 ,2])
