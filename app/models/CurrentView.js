@@ -1,6 +1,11 @@
 import * as _ from 'lodash';
 
 export default class CurrentView {
+  constructor() {
+    this.filters = {};
+    this.options = { stickyNodesEnabled: false };
+  }
+
   selectedNode = undefined;
 
   setGraph(componentsGraph) {
@@ -23,16 +28,11 @@ export default class CurrentView {
     this.graph = this.componentsGraph;
     this.componentsGraph.resetFilter();
 
-    if (this.filters.componentsVisible ) {
+    if (this.filters.componentsVisible) {
       this.componentsGraph.filterNodes(function(node) {
         var val = this.filters.componentsVisible[node.type];
         return val === true;
       });
     }
-
-    // Now filter all components of excluded modules
-    this.componentsGraph.filterNodes((node) => {
-      return (this.modulesGraph.nodes.indexOf(node.module) !== -1);
-    });
   }
 }

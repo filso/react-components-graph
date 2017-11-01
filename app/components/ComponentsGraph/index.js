@@ -175,7 +175,7 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
       .scaleExtent([0.5 ,2])
       .on('zoom', zoomListener);
 
-    var svg = d3.select(elm[0]).append('svg')
+    var svg = d3.select(elm).append('svg')
       .on('mousedown', function() {
         // Allow moving only on svg element,
         // otherwise stop propagation to zoom behaviour
