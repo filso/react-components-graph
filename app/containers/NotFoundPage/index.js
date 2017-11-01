@@ -10,7 +10,6 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
 
@@ -18,7 +17,7 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <h1>
-        <FormattedMessage {...messages.header} />
+        Not found
       </h1>
     );
   }
