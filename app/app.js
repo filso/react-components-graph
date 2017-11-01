@@ -42,6 +42,8 @@ import './global-styles';
 // Import static files
 // import '!file-loader?name=[name].[ext]&outputPath=assets/!./assets/vendor/jquery-2.1.1.min.js';
 import '!file-loader?name=[name].[ext]&outputPath=assets/!./assets/vendor/d3.min.js';
+import '!file-loader?name=[name].[ext]&outputPath=assets/!./assets/vendor/jquery-2.1.1.min.js';
+import '!file-loader?name=[name].[ext]&outputPath=assets/!./assets/vendor/typeahead.jquery.js';
 
 
 // Create redux store with history

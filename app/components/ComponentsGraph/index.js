@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Graph from './Graph';
+import Graph from '../../models/Graph';
 import SearchNode from '../SearchNode';
+import * as _ from 'lodash';
 
 export default class ComponentsGraph extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
+    let elm = this.refs.graph;
 
-    function update() {
+    let update = () => {
+      let currentView = this.props.currentView;
       // TODO(filip): profile this, this is run on every node select
-      var currentGraph = currentView.graph;
+      let currentGraph = currentView.graph;
       force.nodes(currentGraph.nodes)
         .links(currentGraph.links);
 
@@ -93,9 +96,7 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
     }
 
     function nodeClick(d) {
-      $rootScope.$apply(function() {
-        currentView.chooseNode(d);
-      });
+      currentView.chooseNode(d);
     }
 
     function zoomListener() {
@@ -129,8 +130,8 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
 
     var links, nodes, nodesEnter;
 
-    var width = elm.width();
-    var height = elm.height();
+    var width = $(elm).width();
+    var height = $(elm).height();
 
     var force = d3.layout.force()
       .size([width, height])
@@ -204,14 +205,14 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
         .attr('d', 'M0,-3L10,0L0,3');
 
     var debouncedUpdate = _.debounce(update, 100);
-    scope.$on(Const.Events.UPDATE_GRAPH, debouncedUpdate);
+    // scope.$on(Const.Events.UPDATE_GRAPH, debouncedUpdate);
     debouncedUpdate();
   }
 
 
   render() {
     return (
-      <div className="dg-graph">
+      <div className="dg-graph" ref='graph'>
         <div className="controls">
           <SearchNode />
 
@@ -231,6 +232,7 @@ export default class ComponentsGraph extends React.Component { // eslint-disable
 
 
 ComponentsGraph.propTypes = {
+  currentView: PropTypes.object,
   startTour: PropTypes.func,
   insertCookieAndRefresh: PropTypes.func
 };
