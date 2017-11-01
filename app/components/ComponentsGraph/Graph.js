@@ -1,6 +1,4 @@
-
-
-function Graph(nodes, links, scope) {
+export default function Graph(nodes, links, scope) {
   this.scope = scope;
   this.origNodes = this.nodes = nodes;
   this.origLinks = this.links = links;
@@ -34,5 +32,3 @@ Graph.prototype.filterByName = function(name) {
   });
 
 };
-
-export default Graph;
